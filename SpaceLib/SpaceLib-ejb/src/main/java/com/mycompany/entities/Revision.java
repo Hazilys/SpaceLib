@@ -6,40 +6,74 @@
 package com.mycompany.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author Camille
  */
 @Entity
-public class Revision implements Serializable {
+public class Revision extends Operation implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private List<Navette> listeNavettesAReviser;
+    @ManyToMany
+    private final List<Navette> listeNavettesAReviser;
+    @NotNull
     private ETATREVISION etatRevision;
-    private Mecanicien idMecanicien;
-    private Station idStation;
-    private Quai idQuai;
+    @ManyToOne
+    private Mecanicien mecanicien;
+    @ManyToOne
+    private Station station;
+    @ManyToOne
+    private Quai quai;
 
-    public Long getId() {
-        return id;
+    public Revision(List<Navette> listeNavettesAReviser) {
+        this.listeNavettesAReviser = listeNavettesAReviser;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public ETATREVISION getEtatRevision() {
+        return etatRevision;
     }
+
+    public void setEtatRevision(ETATREVISION etatRevision) {
+        this.etatRevision = etatRevision;
+    }
+
+    public Mecanicien getMecanicien() {
+        return mecanicien;
+    }
+
+    public void setMecanicien(Mecanicien mecanicien) {
+        this.mecanicien = mecanicien;
+    }
+
+    public Station getStation() {
+        return station;
+    }
+
+    public void setStation(Station station) {
+        this.station = station;
+    }
+
+    public Quai getQuai() {
+        return quai;
+    }
+
+    public void setQuai(Quai quai) {
+        this.quai = quai;
+    }   
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (super.getIdOperation() != null ? super.getIdOperation().hashCode() : 0);
         return hash;
     }
 
@@ -50,7 +84,7 @@ public class Revision implements Serializable {
             return false;
         }
         Revision other = (Revision) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((super.getIdOperation() == null && other.getIdOperation() != null) || (super.getIdOperation() != null && !super.getIdOperation().equals(other.getIdOperation()))) {
             return false;
         }
         return true;
@@ -58,7 +92,7 @@ public class Revision implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.entities.Revision[ id=" + id + " ]";
+        return "com.mycompany.entities.Revision[ id=" + super.getIdOperation() + " ]";
     }
     
 }

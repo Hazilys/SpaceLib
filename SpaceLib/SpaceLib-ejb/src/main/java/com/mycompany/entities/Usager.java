@@ -6,10 +6,9 @@
 package com.mycompany.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -19,9 +18,23 @@ import javax.persistence.OneToMany;
 @Entity
 public class Usager extends Utilisateur implements Serializable {
 
+    @OneToMany(mappedBy = "emprunteur")
+    private List<Voyage> voyages;
+
     private static final long serialVersionUID = 1L;
-    @OneToMany(mappedBy = "usagers")
+    @ManyToOne
     private Station localisation;
+
+    public Usager() {
+    }
+
+    public List<Voyage> getVoyages() {
+        return voyages;
+    }
+
+    public void setVoyages(List<Voyage> voyages) {
+        this.voyages = voyages;
+    }
 
     public Station getLocalisation() {
         return localisation;
@@ -34,7 +47,7 @@ public class Usager extends Utilisateur implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (super.getIdUtilisateur() != null ? super.getIdUtilisateur().hashCode() : 0);
         return hash;
     }
 
@@ -45,7 +58,7 @@ public class Usager extends Utilisateur implements Serializable {
             return false;
         }
         Usager other = (Usager) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((super.getIdUtilisateur() == null && other.getIdUtilisateur() != null) || (super.getIdUtilisateur() != null && !super.getIdUtilisateur().equals(other.getIdUtilisateur()))) {
             return false;
         }
         return true;
@@ -53,7 +66,7 @@ public class Usager extends Utilisateur implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.entities.Usager[ id=" + id + " ]";
+        return "com.mycompany.entities.Usager[ id=" + super.getIdUtilisateur() + " ]";
     }
     
 }

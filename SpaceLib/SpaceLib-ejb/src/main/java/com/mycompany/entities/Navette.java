@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
@@ -23,12 +24,10 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Navette implements Serializable {
 
-    
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long idNavette;
     @NotNull
     private NBPLACES nbPlaces;
     @NotNull
@@ -36,16 +35,21 @@ public class Navette implements Serializable {
     @NotNull
     private Boolean disponible;
     @OneToOne
-    private Quais quai;
-    @OneToMany(mappedBy = "idNavette")
+    private Quai quai;
+    @OneToMany(mappedBy = "navette")
     private List<Operation> listeOperations;
+    @ManyToMany(mappedBy = "listeNavettesAReviser")
+    private List<Revision> revisions;
 
-    public Long getId() {
-        return id;
+    public Navette() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getIdNavette() {
+        return idNavette;
+    }
+
+    public void setIdNavette(Long idNavette) {
+        this.idNavette = idNavette;
     }
 
     public NBPLACES getNbPlaces() {
@@ -71,22 +75,46 @@ public class Navette implements Serializable {
     public void setDisponible(Boolean disponible) {
         this.disponible = disponible;
     }
+
+    public Quai getQuai() {
+        return quai;
+    }
+
+    public void setQuai(Quai quai) {
+        this.quai = quai;
+    }
+
+    public List<Operation> getListeOperations() {
+        return listeOperations;
+    }
+
+    public void setListeOperations(List<Operation> listeOperations) {
+        this.listeOperations = listeOperations;
+    }
+
+    public List<Revision> getRevisions() {
+        return revisions;
+    }
+
+    public void setRevisions(List<Revision> revisions) {
+        this.revisions = revisions;
+    }
     
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idNavette != null ? idNavette.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        // TODO: Warning - this method won't work in the case the idNavette fields are not set
         if (!(object instanceof Navette)) {
             return false;
         }
         Navette other = (Navette) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idNavette == null && other.idNavette != null) || (this.idNavette != null && !this.idNavette.equals(other.idNavette))) {
             return false;
         }
         return true;
@@ -94,7 +122,7 @@ public class Navette implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.entities.Navette[ id=" + id + " ]";
+        return "com.mycompany.entities.Navette[ id=" + idNavette + " ]";
     }
     
 }

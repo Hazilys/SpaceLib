@@ -6,12 +6,10 @@
 package com.mycompany.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -20,22 +18,36 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Mecanicien extends Utilisateur implements Serializable {
 
+    @OneToMany(mappedBy = "mecanicien")
+    private List<Revision> revisions;
+
     private static final long serialVersionUID = 1L;
-    @OneToMany(mappedBy = "mecaniciens")
+    @ManyToOne
     private Station stationRattachement;
-    
+
+    public Mecanicien() {
+    }
+
+    public List<Revision> getRevisions() {
+        return revisions;
+    }
+
+    public void setRevisions(List<Revision> revisions) {
+        this.revisions = revisions;
+    }
+
     public Station getStationRattachement() {
         return stationRattachement;
     }
 
     public void setStationRattachement(Station stationRattachement) {
         this.stationRattachement = stationRattachement;
-    }    
+    }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idUsager != null ? idUsager.hashCode() : 0);
+        hash += (super.getIdUtilisateur() != null ? super.getIdUtilisateur().hashCode() : 0);
         return hash;
     }
 
@@ -46,7 +58,7 @@ public class Mecanicien extends Utilisateur implements Serializable {
             return false;
         }
         Mecanicien other = (Mecanicien) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((super.getIdUtilisateur() == null && other.getIdUtilisateur() != null) || (super.getIdUtilisateur() != null && !super.getIdUtilisateur().equals(other.getIdUtilisateur()))) {
             return false;
         }
         return true;
@@ -54,7 +66,7 @@ public class Mecanicien extends Utilisateur implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.entities.Mecanicien[ id=" + id + " ]";
+        return "com.mycompany.entities.Mecanicien[ id=" + super.getIdUtilisateur() + " ]";
     }
     
 }

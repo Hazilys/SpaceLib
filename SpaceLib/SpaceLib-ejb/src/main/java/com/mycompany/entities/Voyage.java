@@ -6,43 +6,101 @@
 package com.mycompany.entities;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author Camille
  */
 @Entity
-public class Voyage implements Serializable {
+public class Voyage extends Operation implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @ManyToOne
     private Station stationDepart;
+    @ManyToOne
     private Station stationArrivee;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar dateDepart;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar dateArrivee;
+    @NotNull
     private Integer nbPassagers;
+    @ManyToOne
     private Usager emprunteur;
+    @NotNull
     private ETATVOYAGE etatVoyage;
-    
 
-    public Long getId() {
-        return id;
+    public Voyage() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Station getStationDepart() {
+        return stationDepart;
     }
+
+    public void setStationDepart(Station stationDepart) {
+        this.stationDepart = stationDepart;
+    }
+
+    public Station getStationArrivee() {
+        return stationArrivee;
+    }
+
+    public void setStationArrivee(Station stationArrivee) {
+        this.stationArrivee = stationArrivee;
+    }
+
+    public Calendar getDateDepart() {
+        return dateDepart;
+    }
+
+    public void setDateDepart(Calendar dateDepart) {
+        this.dateDepart = dateDepart;
+    }
+
+    public Calendar getDateArrivee() {
+        return dateArrivee;
+    }
+
+    public void setDateArrivee(Calendar dateArrivee) {
+        this.dateArrivee = dateArrivee;
+    }
+
+    public Integer getNbPassagers() {
+        return nbPassagers;
+    }
+
+    public void setNbPassagers(Integer nbPassagers) {
+        this.nbPassagers = nbPassagers;
+    }
+
+    public Usager getEmprunteur() {
+        return emprunteur;
+    }
+
+    public void setEmprunteur(Usager emprunteur) {
+        this.emprunteur = emprunteur;
+    }
+
+    public ETATVOYAGE getEtatVoyage() {
+        return etatVoyage;
+    }
+
+    public void setEtatVoyage(ETATVOYAGE etatVoyage) {
+        this.etatVoyage = etatVoyage;
+    }    
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (super.getIdOperation() != null ? super.getIdOperation().hashCode() : 0);
         return hash;
     }
 
@@ -53,7 +111,7 @@ public class Voyage implements Serializable {
             return false;
         }
         Voyage other = (Voyage) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((super.getIdOperation() == null && other.getIdOperation() != null) || (super.getIdOperation() != null && !super.getIdOperation().equals(other.getIdOperation()))) {
             return false;
         }
         return true;
@@ -61,7 +119,7 @@ public class Voyage implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.entities.Voyage[ id=" + id + " ]";
+        return "com.mycompany.entities.Voyage[ id=" + super.getIdOperation() + " ]";
     }
     
 }

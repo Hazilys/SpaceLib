@@ -10,5 +10,15 @@ package com.mycompany.entities;
  * @author Camille
  */
 public enum NBPLACES {
-    DEUX, CINQ, DIX, QUINZE;
+    DEUX(2), CINQ(5), DIX(10), QUINZE(15);
+    
+    private final int valeur;
+    
+    private NBPLACES(int valeur){
+        this.valeur = valeur;
+    }
+    
+    public int getValeur(){
+        return this.valeur;
+    }
 }

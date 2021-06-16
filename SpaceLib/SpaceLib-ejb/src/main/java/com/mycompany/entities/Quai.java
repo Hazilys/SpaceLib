@@ -23,8 +23,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Quai implements Serializable {
 
-    @OneToMany(mappedBy = "quai")
-    private List<Revision> revisions;
+   @OneToMany(mappedBy = "quai")
+   private List<Revision> revisions;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,7 +43,7 @@ public class Quai implements Serializable {
     }
 
     public List<Revision> getRevisions() {
-        return revisions;
+           return revisions;
     }
 
     public void setRevisions(List<Revision> revisions) {

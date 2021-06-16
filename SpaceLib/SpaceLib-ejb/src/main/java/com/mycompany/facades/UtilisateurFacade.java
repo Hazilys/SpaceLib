@@ -5,6 +5,9 @@
  */
 package com.mycompany.facades;
 
+import com.mycompany.entities.Navette;
+import com.mycompany.entities.Quai;
+import com.mycompany.entities.Station;
 import com.mycompany.entities.Utilisateur;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -27,6 +30,16 @@ public class UtilisateurFacade extends AbstractFacade<Utilisateur> implements Ut
 
     public UtilisateurFacade() {
         super(Utilisateur.class);
+    }
+
+    @Override
+    public void debuterRevisionNavette(Navette navette, Quai quai, Station station) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void cloturerRevisionNavette(Navette navette, Quai quai, Station station) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -54,6 +54,7 @@ public class Station implements Serializable {
         this.voyages = voyages;
     }
 
+    
     public List<Revision> getRevisions() {
         return revisions;
     }

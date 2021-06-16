@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.mycompany.facades;
 
 import com.mycompany.entities.Revision;
@@ -13,6 +14,7 @@ import javax.ejb.Local;
  *
  * @author Camille
  */
+
 @Local
 public interface RevisionFacadeLocal {
 

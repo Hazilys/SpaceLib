@@ -6,6 +6,9 @@
 package com.mycompany.facades;
 
 import com.mycompany.entities.Utilisateur;
+import com.mycompany.entities.Quai;
+import com.mycompany.entities.Station;
+import com.mycompany.entities.Navette;
 import java.util.List;
 import javax.ejb.Local;
 

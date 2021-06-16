@@ -7,6 +7,7 @@ package com.mycompany.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,14 +18,14 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author Camille
+ * @author AminaDridi
  */
 @Entity
 public class Revision extends Operation implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @ManyToMany
-    private final List<Navette> listeNavettesAReviser;
+    private List<Navette> listeNavettesAReviser;
     @NotNull
     private ETATREVISION etatRevision;
     @ManyToOne
@@ -34,7 +35,11 @@ public class Revision extends Operation implements Serializable {
     @ManyToOne
     private Quai quai;
 
-    public Revision(List<Navette> listeNavettesAReviser) {
+    public List<Navette> getListeNavettesAReviser() {
+        return listeNavettesAReviser;
+    }
+
+    public void setListeNavettesAReviser(List<Navette> listeNavettesAReviser) {
         this.listeNavettesAReviser = listeNavettesAReviser;
     }
 
@@ -68,23 +73,44 @@ public class Revision extends Operation implements Serializable {
 
     public void setQuai(Quai quai) {
         this.quai = quai;
-    }   
+    }
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (super.getIdOperation() != null ? super.getIdOperation().hashCode() : 0);
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.listeNavettesAReviser);
+        hash = 37 * hash + Objects.hashCode(this.etatRevision);
+        hash = 37 * hash + Objects.hashCode(this.mecanicien);
+        hash = 37 * hash + Objects.hashCode(this.station);
+        hash = 37 * hash + Objects.hashCode(this.quai);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Revision)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Revision other = (Revision) object;
-        if ((super.getIdOperation() == null && other.getIdOperation() != null) || (super.getIdOperation() != null && !super.getIdOperation().equals(other.getIdOperation()))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Revision other = (Revision) obj;
+        if (!Objects.equals(this.listeNavettesAReviser, other.listeNavettesAReviser)) {
+            return false;
+        }
+        if (this.etatRevision != other.etatRevision) {
+            return false;
+        }
+        if (!Objects.equals(this.mecanicien, other.mecanicien)) {
+            return false;
+        }
+        if (!Objects.equals(this.station, other.station)) {
+            return false;
+        }
+        if (!Objects.equals(this.quai, other.quai)) {
             return false;
         }
         return true;
@@ -92,7 +118,9 @@ public class Revision extends Operation implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.entities.Revision[ id=" + super.getIdOperation() + " ]";
+        return "Revision{" + "listeNavettesAReviser=" + listeNavettesAReviser + ", etatRevision=" + etatRevision + ", mecanicien=" + mecanicien + ", station=" + station + ", quai=" + quai + '}';
     }
+    
+    
     
 }

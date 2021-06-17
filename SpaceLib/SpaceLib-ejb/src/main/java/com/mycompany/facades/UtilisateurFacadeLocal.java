@@ -19,7 +19,7 @@ import javax.ejb.Local;
 @Local
 public interface UtilisateurFacadeLocal {
     
-    void seConnecter(String nomUtilisateur, String mdp);
+    Utilisateur seConnecter(String nomUtilisateur, String mdp);
 
     void create(Utilisateur utilisateur);
 

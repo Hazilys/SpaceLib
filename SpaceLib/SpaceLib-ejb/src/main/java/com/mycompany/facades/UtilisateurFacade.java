@@ -9,6 +9,9 @@ import com.mycompany.entities.Utilisateur;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -30,8 +33,16 @@ public class UtilisateurFacade extends AbstractFacade<Utilisateur> implements Ut
     }
 
     @Override
-    public void seConnecter(String nomUtilisateur, String mdp) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Utilisateur seConnecter(String nomUtilisateur, String mdp) {
+        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<Utilisateur> cq = cb.createQuery(Utilisateur.class);
+        Root<Utilisateur> root = cq.from(Utilisateur.class);
+        cq.where(
+                cb.and(
+                        cb.equal(cb.upper(root.get("nomUtilisateur").as(String.class)), nomUtilisateur.toUpperCase()),
+                        cb.equal(cb.upper(root.get("mdp").as(String.class)), mdp.toUpperCase())) // chiffrement mot de passe à faire si on a du temps                )
+        );
+        return getEntityManager().createQuery(cq).getSingleResult();
     }
     
 }

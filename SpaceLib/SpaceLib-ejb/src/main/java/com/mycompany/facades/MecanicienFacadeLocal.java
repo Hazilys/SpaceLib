@@ -6,6 +6,9 @@
 package com.mycompany.facades;
 
 import com.mycompany.entities.Mecanicien;
+import com.mycompany.entities.Navette;
+import com.mycompany.entities.Quai;
+import com.mycompany.entities.Station;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -15,6 +18,12 @@ import javax.ejb.Local;
  */
 @Local
 public interface MecanicienFacadeLocal {
+    
+    void seConnecter(String nomUtilisateur, String mdp);
+    
+    void debuterRevisionNavette(Navette navette, Quai quai, Station station);
+    
+    void cloturerRevisionNavette(Navette navette, Quai quai, Station station);
 
     void create(Mecanicien mecanicien);
 

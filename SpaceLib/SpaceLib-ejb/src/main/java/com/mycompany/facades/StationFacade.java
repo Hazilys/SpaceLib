@@ -5,6 +5,8 @@
  */
 package com.mycompany.facades;
 
+import com.mycompany.entities.Navette;
+import com.mycompany.entities.Quai;
 import com.mycompany.entities.Station;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -27,6 +29,30 @@ public class StationFacade extends AbstractFacade<Station> implements StationFac
 
     public StationFacade() {
         super(Station.class);
+    }
+
+    @Override
+    public Navette navetteDisponible(Station station, int nbPassagers) {
+        for (Quai quai : station.getListeQuais()){
+            Navette nav = quai.getNavette();
+            if (nav!=null){
+                if (nav.getNbPlaces().getValeur() >= nbPassagers){
+                    return nav;
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public boolean quaiDisponible(Station station) {
+        for (Quai quai : station.getListeQuais()){
+            Navette nav = quai.getNavette();
+            if (nav==null){
+                return true;
+            }
+        }
+        return false;
     }
     
 }

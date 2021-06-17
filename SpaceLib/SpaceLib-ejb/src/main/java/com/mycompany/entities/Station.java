@@ -22,16 +22,12 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Station implements Serializable {
 
-    @OneToMany(mappedBy = "stationDepart")
-    private List<Voyage> voyages;
-
-    @OneToMany(mappedBy = "station")
-    private List<Revision> revisions;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idStation;
+    @NotNull
+    private String nomStation;
     @NotNull
     private String localisation;
     @NotNull
@@ -42,25 +38,14 @@ public class Station implements Serializable {
     private List<Mecanicien> listeMecaniciens;
     @OneToMany(mappedBy = "localisation")
     private List<Usager> listeUsagers;
+    
+    @OneToMany(mappedBy = "stationDepart")
+    private List<Voyage> voyages;
+
+    @OneToMany(mappedBy = "station")
+    private List<Revision> revisions;
 
     public Station() {
-    }
-
-    public List<Voyage> getVoyages() {
-        return voyages;
-    }
-
-    public void setVoyages(List<Voyage> voyages) {
-        this.voyages = voyages;
-    }
-
-    
-    public List<Revision> getRevisions() {
-        return revisions;
-    }
-
-    public void setRevisions(List<Revision> revisions) {
-        this.revisions = revisions;
     }
 
     public Long getIdStation() {
@@ -69,6 +54,14 @@ public class Station implements Serializable {
 
     public void setIdStation(Long idStation) {
         this.idStation = idStation;
+    }
+    
+    public String getNomStation() {
+        return nomStation;
+    }
+
+    public void setNomStation(String nomStation) {
+        this.nomStation = nomStation;
     }
 
     public String getLocalisation() {
@@ -109,6 +102,23 @@ public class Station implements Serializable {
 
     public void setListeUsagers(List<Usager> listeUsagers) {
         this.listeUsagers = listeUsagers;
+    }
+    
+    public List<Voyage> getVoyages() {
+        return voyages;
+    }
+
+    public void setVoyages(List<Voyage> voyages) {
+        this.voyages = voyages;
+    }
+
+    
+    public List<Revision> getRevisions() {
+        return revisions;
+    }
+
+    public void setRevisions(List<Revision> revisions) {
+        this.revisions = revisions;
     }
     
     @Override

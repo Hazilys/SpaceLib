@@ -19,9 +19,7 @@ import javax.ejb.Local;
 @Local
 public interface UtilisateurFacadeLocal {
     
-    void debuterRevisionNavette(Navette navette, Quai quai, Station station);
-    
-    void cloturerRevisionNavette(Navette navette, Quai quai, Station station);
+    void seConnecter(String nomUtilisateur, String mdp);
 
     void create(Utilisateur utilisateur);
 

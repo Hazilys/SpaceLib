@@ -6,7 +6,9 @@
 
 package com.mycompany.facades;
 
+import com.mycompany.entities.Navette;
 import com.mycompany.entities.Revision;
+import com.mycompany.entities.Station;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -31,5 +33,7 @@ public interface RevisionFacadeLocal {
     List<Revision> findRange(int[] range);
 
     int count();
+    
+    public void creatRevisionForNavette(Navette navette, Station station);
     
 }

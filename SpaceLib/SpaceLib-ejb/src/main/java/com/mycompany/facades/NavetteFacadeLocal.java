@@ -22,12 +22,18 @@ public interface NavetteFacadeLocal {
 
     void remove(Navette navette);
 
+
     Navette find(Object id);
 
     List<Navette> findAll();
 
     List<Navette> findRange(int[] range);
+    
+    List<Navette> findNavetteDispo ();
 
     int count();
+    
+   // public void incrementerNbVoyageTotal(long idNavette);
+    
     
 }

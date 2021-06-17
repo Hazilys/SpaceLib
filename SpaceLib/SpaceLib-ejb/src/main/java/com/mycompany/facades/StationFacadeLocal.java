@@ -6,6 +6,7 @@
 package com.mycompany.facades;
 
 import com.mycompany.entities.Navette;
+import com.mycompany.entities.Quai;
 import com.mycompany.entities.Station;
 import java.util.List;
 import javax.ejb.Local;
@@ -17,9 +18,9 @@ import javax.ejb.Local;
 @Local
 public interface StationFacadeLocal {
     
-    Navette navetteDisponible(Station station, int nbPassagers);
+    boolean navetteDisponible(Station station, int nbPassagers, Navette navette);
     
-    boolean quaiDisponible(Station station);
+    boolean quaiDisponible(Station station,Quai quai);
 
     void create(Station station);
 

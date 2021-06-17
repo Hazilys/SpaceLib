@@ -39,8 +39,8 @@ public class UtilisateurFacade extends AbstractFacade<Utilisateur> implements Ut
         Root<Utilisateur> root = cq.from(Utilisateur.class);
         cq.where(
                 cb.and(
-                        cb.equal(cb.upper(root.get("nomUtilisateur").as(String.class)), nomUtilisateur.toUpperCase()),
-                        cb.equal(cb.upper(root.get("mdp").as(String.class)), mdp.toUpperCase())) // chiffrement mot de passe à faire si on a du temps                )
+                        cb.equal(root.get("nomUtilisateur").as(String.class),nomUtilisateur),
+                        cb.equal(root.get("mdp").as(String.class), mdp)) // chiffrement mot de passe à faire si on a du temps                )
         );
         return getEntityManager().createQuery(cq).getSingleResult();
     }

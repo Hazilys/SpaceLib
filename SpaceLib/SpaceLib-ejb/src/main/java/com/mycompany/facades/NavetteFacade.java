@@ -5,10 +5,14 @@
  */
 package com.mycompany.facades;
 
+
 import com.mycompany.entities.Navette;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  *
@@ -16,6 +20,8 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class NavetteFacade extends AbstractFacade<Navette> implements NavetteFacadeLocal {
+
+    
 
     @PersistenceContext(unitName = "SpaceLibPersistenceUnit")
     private EntityManager em;
@@ -28,5 +34,30 @@ public class NavetteFacade extends AbstractFacade<Navette> implements NavetteFac
     public NavetteFacade() {
         super(Navette.class);
     }
-    
+/*
+    @Override
+    public void incrementerNbVoyageTotal(long idNavette) {
+         Navette navette = this.find(idNavette);
+         int nbVoyageTotalInt = navette.getNbVoyagesTotal();
+         if (nbVoyageTotalInt > 3 ){ 
+             navette.setNbVoyagesTotal(0);
+         }
+        navette.setNbVoyagesTotal(nbVoyageTotalInt+1);
+        this.edit(navette);  
+    }
+
+  */
+
+    @Override
+    public List<Navette> findNavetteDispo() {
+       List<Navette> navettes = new ArrayList<Navette>();
+       navettes = this.findAll();
+       for ( Navette e : navettes){
+           if(!e.getDisponible()){
+               navettes.remove(e);
+       }
+     }
+        return navettes;
+
+    }
 }

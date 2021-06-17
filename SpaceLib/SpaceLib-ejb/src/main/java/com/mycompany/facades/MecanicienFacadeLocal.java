@@ -9,6 +9,7 @@ import com.mycompany.entities.Mecanicien;
 import com.mycompany.entities.Navette;
 import com.mycompany.entities.Quai;
 import com.mycompany.entities.Station;
+import com.mycompany.entities.Utilisateur;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -39,4 +40,5 @@ public interface MecanicienFacadeLocal {
 
     int count();
     
+   
 }

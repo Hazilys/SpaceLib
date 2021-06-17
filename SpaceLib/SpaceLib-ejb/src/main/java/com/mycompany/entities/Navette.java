@@ -21,6 +21,7 @@ import javax.validation.constraints.NotNull;
  * @author Camille
  */
 
+
 @Entity
 public class Navette implements Serializable {
 
@@ -40,10 +41,12 @@ public class Navette implements Serializable {
     private List<Operation> listeOperations;
     @ManyToMany(mappedBy = "listeNavettesAReviser")
     private List<Revision> revisions;
+    
+    // ajouter attributs list<voyage> ??
 
     public Navette() {
     }
-
+    
     public Long getIdNavette() {
         return idNavette;
     }

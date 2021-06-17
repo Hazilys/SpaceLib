@@ -12,8 +12,10 @@ import com.mycompany.entities.Operation;
 import com.mycompany.entities.Quai;
 import com.mycompany.entities.Revision;
 import com.mycompany.entities.Station;
+import com.mycompany.entities.Utilisateur;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +29,8 @@ public class MecanicienFacade extends AbstractFacade<Mecanicien> implements Meca
 
     @PersistenceContext(unitName = "SpaceLibPersistenceUnit")
     private EntityManager em;
+     @EJB
+       UtilisateurFacadeLocal utiliateurFaced; 
 
     @Override
     protected EntityManager getEntityManager() {
@@ -39,7 +43,8 @@ public class MecanicienFacade extends AbstractFacade<Mecanicien> implements Meca
 
     @Override
     public void seConnecter(String nomUtilisateur, String mdp) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    
     }
 
     @Override

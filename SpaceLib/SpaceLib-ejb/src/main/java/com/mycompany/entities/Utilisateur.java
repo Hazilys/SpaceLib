@@ -43,10 +43,6 @@ public class Utilisateur implements Serializable {
         return idUtilisateur;
     }
 
-    public void setIdUtilisateur(Long idUtilisateur) {
-        this.idUtilisateur = idUtilisateur;
-    }
-
     public String getNom() {
         return nom;
     }

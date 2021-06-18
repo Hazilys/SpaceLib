@@ -13,6 +13,7 @@ import com.mycompany.entities.Usager;
 import com.mycompany.entities.Voyage;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Objects;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -43,9 +44,8 @@ public class UsagerFacade extends AbstractFacade<Usager> implements UsagerFacade
     }
 
     @Override
-    public void resever(Usager emprunteur, int NbPassagers, Station stationDepart, Station stationArrivee, Calendar dateDepart, Calendar dateArrivee,Navette navette,Quai quai) {
-        
-        
+    public void resever(Usager emprunteur, int NbPassagers, Station stationDepart, Station stationArrivee, Calendar dateDepart, Calendar dateArrivee,Quai quai) {
+             
         // alors on crée un objet Voyage + syso embarquement/arrivée
         
         // TODO !!!!
@@ -53,8 +53,8 @@ public class UsagerFacade extends AbstractFacade<Usager> implements UsagerFacade
         
      
        // si y a une navette de disponible  et si y a un quai de disponible sur la station d'arrivée 
-      if (stationFacade.navetteDisponible(stationDepart, NbPassagers,navette) && stationFacade.quaiDisponible(stationArrivee,quai)){
-        
+      if (!Objects.isNull(stationFacade.navetteDisponible(stationDepart, NbPassagers)) && stationFacade.quaiDisponible(stationArrivee,quai)){
+        Navette navette = stationFacade.navetteDisponible(stationDepart, NbPassagers);
         // Création de l'opération voyage initié (voyageI pour voyage initié)
         Voyage voyageI = new Voyage();
         voyageI.setDateCreationOperation(new GregorianCalendar());

@@ -20,7 +20,7 @@ import javax.ejb.Local;
 @Local
 public interface UsagerFacadeLocal {
     
-    void resever(Usager emprunteur, int NbPassagers, Station stationDepart, Station stationArrivee, Calendar dateDepart, Calendar dateArrivee,Navette navette,Quai quai);
+    void resever(Usager emprunteur, int NbPassagers, Station stationDepart, Station stationArrivee, Calendar dateDepart, Calendar dateArrivee,Quai quai);
 
     void create(Usager usager);
 

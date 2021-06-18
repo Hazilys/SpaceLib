@@ -18,7 +18,7 @@ import javax.ejb.Local;
 @Local
 public interface StationFacadeLocal {
     
-    boolean navetteDisponible(Station station, int nbPassagers, Navette navette);
+    Navette navetteDisponible(Station station, int nbPassagers);
     
     boolean quaiDisponible(Station station,Quai quai);
 

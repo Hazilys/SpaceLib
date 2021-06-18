@@ -35,17 +35,17 @@ public class StationFacade extends AbstractFacade<Station> implements StationFac
     //ajout d'une navette dans les parametres et changement du type de retour booleen
     //navette affectation en dehors de la fonction ??
     @Override
-    public boolean navetteDisponible(Station station, int nbPassagers,Navette navette) {
+    public Navette navetteDisponible(Station station, int nbPassagers) {
         for (Quai quai : station.getListeQuais()){
             Navette nav = quai.getNavette();
             if (Objects.isNull(nav)){
                 if (nav.getNbPlaces().getValeur() >= nbPassagers){
-                    navette = nav;
-                    return true;
+                   
+                    return nav;
                 }
             }
         }
-        return false;
+        return null;
     }
     // ajout du parametre quai
     @Override

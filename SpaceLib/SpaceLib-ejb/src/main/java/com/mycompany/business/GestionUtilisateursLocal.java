@@ -8,6 +8,7 @@ package com.mycompany.business;
 import com.mycompany.entities.Station;
 import com.mycompany.entities.Usager;
 import com.mycompany.entities.Utilisateur;
+import java.util.Calendar;
 import javax.ejb.Local;
 
 /**
@@ -23,7 +24,13 @@ public interface GestionUtilisateursLocal {
     
     public void supprimerUtilisateur(int idUtilisateur);
     
-  
+    public void reserver(Usager usager, int NbPassagers, Station stationArrivee,Station stationDepart,Calendar dateDepart, Calendar dateArrivee);
+    
+    public void intialiserVoyage(Usager usager);
+    
+    public void finaliserVoyage ( Usager usager );
+    
+   
     
     
     

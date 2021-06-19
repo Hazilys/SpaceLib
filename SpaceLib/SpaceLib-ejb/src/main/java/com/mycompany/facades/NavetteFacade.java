@@ -10,8 +10,6 @@ import com.mycompany.entities.Navette;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -47,17 +45,5 @@ public class NavetteFacade extends AbstractFacade<Navette> implements NavetteFac
     }
 
   */
-
-    @Override
-    public List<Navette> findNavetteDispo() {
-       List<Navette> navettes = new ArrayList<Navette>();
-       navettes = this.findAll();
-       for ( Navette e : navettes){
-           if(!e.getDisponible()){
-               navettes.remove(e);
-       }
-     }
-        return navettes;
-
-    }
+    
 }

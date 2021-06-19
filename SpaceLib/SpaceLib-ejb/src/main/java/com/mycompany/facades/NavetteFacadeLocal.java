@@ -28,8 +28,6 @@ public interface NavetteFacadeLocal {
     List<Navette> findAll();
 
     List<Navette> findRange(int[] range);
-    
-    List<Navette> findNavetteDispo ();
 
     int count();
     

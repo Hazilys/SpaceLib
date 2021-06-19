@@ -10,5 +10,5 @@ package com.mycompany.entities;
  * @author Camille
  */
 public enum ETATVOYAGE {
-    INITIE, ACHEVE;
+    INITIE, ACHEVE, RESERVATION;
 }

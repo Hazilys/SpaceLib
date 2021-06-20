@@ -21,5 +21,6 @@ public interface GestionStationLocal {
      public Quai quaiDisponible(Station stationArrive);
      public List<Station> listeStation();
      public Station getStationByNom(Long idStation);
+     
     
 }

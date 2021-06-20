@@ -31,6 +31,12 @@ public class UtilisateurFacade extends AbstractFacade<Utilisateur> implements Ut
     public UtilisateurFacade() {
         super(Utilisateur.class);
     }
+    
+    @Override
+    public Utilisateur creerCompte(String nomUtilisateur, String mdp) {
+        // TODO
+        return null;
+    }
 
     @Override
     public Utilisateur seConnecter(String nomUtilisateur, String mdp) {

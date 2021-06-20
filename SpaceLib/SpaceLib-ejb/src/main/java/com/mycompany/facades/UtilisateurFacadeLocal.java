@@ -19,6 +19,8 @@ import javax.ejb.Local;
 @Local
 public interface UtilisateurFacadeLocal {
     
+    Utilisateur creerCompte(String nomUtilisateur, String mdp);
+    
     Utilisateur seConnecter(String nomUtilisateur, String mdp);
 
     void create(Utilisateur utilisateur);

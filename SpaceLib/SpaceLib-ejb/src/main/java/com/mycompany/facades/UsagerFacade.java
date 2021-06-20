@@ -28,11 +28,6 @@ public class UsagerFacade extends AbstractFacade<Usager> implements UsagerFacade
 
     @PersistenceContext(unitName = "SpaceLibPersistenceUnit")
     private EntityManager em;
-    
-    @EJB
-    StationFacadeLocal stationFacade;
-    @EJB
-    VoyageFacadeLocal voyageFacade;
 
     @Override
     protected EntityManager getEntityManager() {
@@ -41,49 +36,6 @@ public class UsagerFacade extends AbstractFacade<Usager> implements UsagerFacade
 
     public UsagerFacade() {
         super(Usager.class);
-    }
-
-    @Override
-    public void resever(Usager emprunteur, int NbPassagers, Station stationDepart, Station stationArrivee, Calendar dateDepart, Calendar dateArrivee,Quai quai) {
-             
-        // alors on crée un objet Voyage + syso embarquement/arrivée
-        
-        // TODO !!!!
-        // ajouter la navette au voyage
-        
-     
-       // si y a une navette de disponible  et si y a un quai de disponible sur la station d'arrivée 
-      if (!Objects.isNull(stationFacade.navetteDisponible(stationDepart, NbPassagers)) && stationFacade.quaiDisponible(stationArrivee,quai)){
-        Navette navette = stationFacade.navetteDisponible(stationDepart, NbPassagers);
-        // Création de l'opération voyage initié (voyageI pour voyage initié)
-        Voyage voyageI = new Voyage();
-        voyageI.setDateCreationOperation(new GregorianCalendar());
-        voyageI.setStationDepart(stationDepart);
-        voyageI.setStationArrivee(stationArrivee);
-        voyageI.setDateDepart(dateDepart);
-        voyageI.setDateArrivee(dateArrivee);
-        voyageI.setNbPassagers(NbPassagers);
-        voyageI.setEmprunteur(emprunteur);
-        voyageI.setNavette(navette);
-        voyageI.setQuai(quai);
-        voyageI.setEtatVoyage(ETATVOYAGE.INITIE);
-        voyageFacade.create(voyageI);
-        navette.setDisponible(Boolean.FALSE);
-        System.out.println("Le voyage est initié");
-      }
-      
-        
-        // Création de l'opération voyage achevé (voyage A pour voyage achevé)
-        Voyage voyageA = new Voyage();
-        voyageA.setDateCreationOperation(new GregorianCalendar());
-        voyageA.setStationDepart(stationDepart);
-        voyageA.setStationArrivee(stationArrivee);
-        voyageA.setDateDepart(dateDepart);
-        voyageA.setDateArrivee(dateArrivee);
-        voyageA.setNbPassagers(NbPassagers);
-        voyageA.setEmprunteur(emprunteur);
-        voyageA.setEtatVoyage(ETATVOYAGE.ACHEVE);
-        System.out.println("Le voyage est achevé");
     }
     
 }

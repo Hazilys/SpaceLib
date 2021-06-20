@@ -21,10 +21,6 @@ import javax.ejb.Local;
 public interface MecanicienFacadeLocal {
     
     void seConnecter(String nomUtilisateur, String mdp);
-    
-    void debuterRevisionNavette(Navette navette, Quai quai, Station station);
-    
-    void cloturerRevisionNavette(Navette navette, Quai quai, Station station);
 
     void create(Mecanicien mecanicien);
 

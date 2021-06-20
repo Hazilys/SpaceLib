@@ -20,7 +20,7 @@ public interface StationFacadeLocal {
     
     Navette navetteDisponible(Station station, int nbPassagers);
     
-    boolean quaiDisponible(Station station,Quai quai);
+    boolean quaiDisponible(Station station);
 
     void create(Station station);
 

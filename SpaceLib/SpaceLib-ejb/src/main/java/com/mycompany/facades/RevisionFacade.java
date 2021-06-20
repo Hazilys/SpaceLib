@@ -7,11 +7,14 @@
 package com.mycompany.facades;
 
 import com.mycompany.entities.ETATREVISION;
+import com.mycompany.entities.Mecanicien;
 import com.mycompany.entities.Navette;
+import com.mycompany.entities.Quai;
 import com.mycompany.entities.Revision;
 import com.mycompany.entities.Station;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 import javax.ejb.Stateless;
@@ -51,5 +54,42 @@ public class RevisionFacade extends AbstractFacade<Revision> implements Revision
         //navette.setRevisions(revisions.add(revision));
         this.create(revision);
         
+    }
+    
+    @Override
+    public void debuterRevisionNavette(Navette navette, Quai quai, Station station, Mecanicien mecanicien) {
+        Revision rev = new Revision();
+        rev.setDateCreationOperation(new GregorianCalendar());
+        rev.setNavette(navette);
+        rev.setQuai(quai);
+        rev.setStation(station);
+        rev.getListeNavettesAReviser().remove(navette);
+        rev.setEtatRevision(ETATREVISION.DEBUT);
+        rev.setMecanicien(mecanicien);
+        
+        this.create(rev);
+        
+        System.out.println("Début de la révision de la navette !");
+    }
+
+    @Override
+    public void cloturerRevisionNavette(Navette navette, Quai quai, Station station, Mecanicien mecanicien) {
+        Revision rev = new Revision();
+        rev.setDateCreationOperation(new GregorianCalendar());
+        rev.setNavette(navette);
+        rev.setQuai(quai);
+        rev.setStation(station);
+        //rev.getListeNavettesAReviser().remove(navette);
+        rev.setEtatRevision(ETATREVISION.FIN);
+        rev.setMecanicien(mecanicien);
+        
+        this.create(rev);
+        
+        System.out.println("Fin de la révision de la navette !");
+    }
+    
+    @Override
+    public List<Navette> getListeNavettesAReviser(){
+        return null;
     }
 }

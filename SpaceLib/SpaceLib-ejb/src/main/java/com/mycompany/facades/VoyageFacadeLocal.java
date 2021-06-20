@@ -5,7 +5,12 @@
  */
 package com.mycompany.facades;
 
+import com.mycompany.entities.Navette;
+import com.mycompany.entities.Quai;
+import com.mycompany.entities.Station;
+import com.mycompany.entities.Usager;
 import com.mycompany.entities.Voyage;
+import java.util.Calendar;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -15,6 +20,8 @@ import javax.ejb.Local;
  */
 @Local
 public interface VoyageFacadeLocal {
+    
+    void resever(Usager emprunteur, int NbPassagers, Station stationDepart, Station stationArrivee, Calendar dateDepart, Calendar dateArrivee, Quai quai, Navette nav);
 
     void create(Voyage voyage);
 

@@ -6,7 +6,9 @@
 
 package com.mycompany.facades;
 
+import com.mycompany.entities.Mecanicien;
 import com.mycompany.entities.Navette;
+import com.mycompany.entities.Quai;
 import com.mycompany.entities.Revision;
 import com.mycompany.entities.Station;
 import java.util.List;
@@ -19,6 +21,14 @@ import javax.ejb.Local;
 
 @Local
 public interface RevisionFacadeLocal {
+    
+    public void creatRevisionForNavette(Navette navette, Station station);
+    
+    void debuterRevisionNavette(Navette navette, Quai quai, Station station, Mecanicien mecanicien);
+    
+    void cloturerRevisionNavette(Navette navette, Quai quai, Station station, Mecanicien mecanicien);
+    
+    List<Navette> getListeNavettesAReviser();
 
     void create(Revision revision);
 
@@ -34,6 +44,5 @@ public interface RevisionFacadeLocal {
 
     int count();
     
-    public void creatRevisionForNavette(Navette navette, Station station);
     
 }

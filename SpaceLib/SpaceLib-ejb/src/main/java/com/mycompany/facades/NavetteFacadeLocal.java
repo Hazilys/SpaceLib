@@ -21,8 +21,7 @@ public interface NavetteFacadeLocal {
     void edit(Navette navette);
 
     void remove(Navette navette);
-
-
+    
     Navette find(Object id);
 
     List<Navette> findAll();

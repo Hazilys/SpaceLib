@@ -38,9 +38,8 @@ public class StationFacade extends AbstractFacade<Station> implements StationFac
     public Navette navetteDisponible(Station station, int nbPassagers) {
         for (Quai quai : station.getListeQuais()){
             Navette nav = quai.getNavette();
-            if (Objects.isNull(nav)){
-                if (nav.getNbPlaces().getValeur() >= nbPassagers){
-                   
+            if (!Objects.isNull(nav)){
+                if (nav.getNbPlaces().getValeur() >= nbPassagers && nav.getDisponible()){
                     return nav;
                 }
             }
@@ -48,8 +47,9 @@ public class StationFacade extends AbstractFacade<Station> implements StationFac
         return null;
     }
     // ajout du parametre quai
+    // pourquoi? j'ai suppr car aucun intérêt, on cherche juste à savoir s'il y a un quai de dispo sur la station d'arrivée
     @Override
-    public boolean quaiDisponible(Station station,Quai quai ) {
+    public boolean quaiDisponible(Station station) {
         for (Quai quaiElement : station.getListeQuais()){
             Navette nav = quaiElement.getNavette();
             if (Objects.isNull(nav)){

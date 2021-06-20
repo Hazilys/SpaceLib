@@ -46,33 +46,5 @@ public class MecanicienFacade extends AbstractFacade<Mecanicien> implements Meca
 
     
     }
-
-    @Override
-    public void debuterRevisionNavette(Navette navette, Quai quai, Station station) {
-        Revision rev = new Revision();
-        rev.setDateCreationOperation(new GregorianCalendar());
-        rev.setNavette(navette);
-        rev.setQuai(quai);
-        rev.setStation(station);
-        rev.getListeNavettesAReviser().remove(navette);
-        rev.setEtatRevision(ETATREVISION.DEBUT);
-        // définir idUtilisateur du mécanicien
-        
-        System.out.println("Début de la révision de la navette !");
-    }
-
-    @Override
-    public void cloturerRevisionNavette(Navette navette, Quai quai, Station station) {
-        Revision rev = new Revision();
-        rev.setDateCreationOperation(new GregorianCalendar());
-        rev.setNavette(navette);
-        rev.setQuai(quai);
-        rev.setStation(station);
-        rev.getListeNavettesAReviser().remove(navette);
-        rev.setEtatRevision(ETATREVISION.FIN);
-        // définir idUtilisateur du mécanicien
-        
-        System.out.println("Fin de la révision de la navette !");
-    }
     
 }

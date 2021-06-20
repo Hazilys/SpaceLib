@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.metier;
+package com.mycompany.business;
 
+import com.mycompany.metier.*;
 import com.mycompany.entities.NBPLACES;
 import com.mycompany.entities.Navette;
 import com.mycompany.entities.Quai;

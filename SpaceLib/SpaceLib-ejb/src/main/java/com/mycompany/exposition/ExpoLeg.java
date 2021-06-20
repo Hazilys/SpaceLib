@@ -9,7 +9,7 @@ import com.mycompany.business.GestionUtilisateursLocal;
 import com.mycompany.entities.Mecanicien;
 import com.mycompany.entities.Station;
 import com.mycompany.entities.Utilisateur;
-import com.mycompany.metier.MetierMecanicienLocal;
+import com.mycompany.business.MetierMecanicienLocal;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 

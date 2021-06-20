@@ -5,6 +5,7 @@
  */
 package com.mycompany.metier;
 
+import com.mycompany.entities.Mecanicien;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +14,9 @@ import javax.ejb.Local;
  */
 @Local
 public interface MetierMecanicienLocal {
+    
+    void seConnecter(String nomUtilisateur, String mdp);
+    
+    void reviserNavette(Mecanicien mecanicien);
     
 }

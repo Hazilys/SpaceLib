@@ -5,6 +5,7 @@
  */
 package com.mycompany.exposition;
 
+import com.mycompany.entities.Mecanicien;
 import javax.ejb.Local;
 
 /**
@@ -14,4 +15,7 @@ import javax.ejb.Local;
 @Local
 public interface ExpoLegLocal {
    
+    void seConnecter(String nomUtilisateur, String mdp);
+    
+    void reviserNavette(Mecanicien mecanicien);
 }

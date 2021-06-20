@@ -15,9 +15,11 @@ import com.mycompany.entities.Utilisateur;
 import com.mycompany.entities.Voyage;
 import com.mycompany.facades.MecanicienFacadeLocal;
 import com.mycompany.facades.NavetteFacade;
+import com.mycompany.facades.NavetteFacadeLocal;
 import com.mycompany.facades.UsagerFacadeLocal;
 import com.mycompany.facades.UtilisateurFacadeLocal;
 import com.mycompany.facades.VoyageFacade;
+import com.mycompany.facades.VoyageFacadeLocal;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Objects;
@@ -32,33 +34,43 @@ import javax.ejb.Stateless;
 public class GestionUtilisateurs implements GestionUtilisateursLocal {
 
     @EJB
-    UtilisateurFacadeLocal utilisateurFacade;
+    private NavetteFacadeLocal navetteFacade;
+
     @EJB
-    MecanicienFacadeLocal mecanicienFacade;
+    private VoyageFacadeLocal voyageFacade;
+
     @EJB
-    UsagerFacadeLocal usagerFacade;
+    private GestionNavetteLocal gestionNavette;
+
     @EJB
-    GestionStation gestionStation;
+    private GestionStationLocal gestionStation;
+
     @EJB
-    GestionNavette gestionNavette;
-     @EJB
-    VoyageFacade voyageFacade;
-     @EJB 
-     NavetteFacade navetteFacade;
+    private MecanicienFacadeLocal mecanicienFacade;
+
+    @EJB
+    private UtilisateurFacadeLocal utilisateurFacade;
+
+    @EJB
+    private UsagerFacadeLocal usagerFacade;
+    
+    
+    
+     
 
     @Override
     public Utilisateur creerUtilisateur(int typeUtilisateur, String nom, String prenom, String nomUtilisateur, String motDePasse) {
         Utilisateur u = null;
-        u.setNom(nom);
-        u.setPrenom(prenom);
-        u.setNomUtilisateur(nomUtilisateur);
-        u.setMotDePasse(motDePasse);
         switch (typeUtilisateur) {
             case 1:
                 u = new Usager();
             case 2:
                 u = new Mecanicien();
         }
+        u.setNom(nom);
+        u.setPrenom(prenom);
+        u.setNomUtilisateur(nomUtilisateur);
+        u.setMotDePasse(motDePasse);        
         return u;
     }
 
@@ -76,7 +88,7 @@ public class GestionUtilisateurs implements GestionUtilisateursLocal {
         usager.setPrenom(prenom);
         usager.setNom(nom);
         usager.setNomUtilisateur(nomUtilisateur);
-        usagerFacade.create(usager);
+        this.usagerFacade.create(usager);
         return usager;
     }
 
@@ -133,6 +145,9 @@ public class GestionUtilisateurs implements GestionUtilisateursLocal {
        }
        usagerFacade.edit(usager);
     }
-
- 
+    
+    @Override
+    public Utilisateur seConnecter(String nomUtilisateur, String mdp){
+        return this.utilisateurFacade.seConnecter(nomUtilisateur, mdp);
+    }
 }

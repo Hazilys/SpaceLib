@@ -7,8 +7,10 @@ package com.mycompany.business;
 
 import com.mycompany.entities.Quai;
 import com.mycompany.entities.Station;
+import com.mycompany.facades.StationFacadeLocal;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -17,6 +19,9 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class GestionStation implements GestionStationLocal {
+
+    @EJB
+    private StationFacadeLocal stationFacade;
 
     @Override
     public List<Quai> listQuaiDisponible(Station station) {
@@ -40,6 +45,15 @@ public class GestionStation implements GestionStationLocal {
         return null;
     }
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @Override
+    public List<Station> listeStation() {
+        return this.stationFacade.findAll();
+    }
+
+    @Override
+    public Station getStationByNom(Long idStation) {
+        return this.stationFacade.find(idStation);
+    }
+    
+    
 }

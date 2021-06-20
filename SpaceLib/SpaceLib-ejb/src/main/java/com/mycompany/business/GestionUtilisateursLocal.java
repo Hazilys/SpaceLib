@@ -30,6 +30,8 @@ public interface GestionUtilisateursLocal {
     
     public void finaliserVoyage ( Usager usager );
     
+    public Utilisateur seConnecter(String nomUtilisateur, String mdp);
+    
    
     
     

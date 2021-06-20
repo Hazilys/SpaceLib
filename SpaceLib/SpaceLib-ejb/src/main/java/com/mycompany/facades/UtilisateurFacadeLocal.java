@@ -22,6 +22,10 @@ public interface UtilisateurFacadeLocal {
     Utilisateur creerCompte(String nomUtilisateur, String mdp);
     
     Utilisateur seConnecter(String nomUtilisateur, String mdp);
+    
+    Utilisateur creerUtilisateur(String nom, String prenom, String nomUtilisateur, String motDePasse);
+    
+    Utilisateur creerMecanicien(String nom, String prenom, String nomUtilisateur, String motDePasse, Station station);
 
     void create(Utilisateur utilisateur);
 

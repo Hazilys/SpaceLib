@@ -5,6 +5,9 @@
  */
 package com.mycompany.facades;
 
+import com.mycompany.entities.Mecanicien;
+import com.mycompany.entities.Station;
+import com.mycompany.entities.Usager;
 import com.mycompany.entities.Utilisateur;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -49,6 +52,30 @@ public class UtilisateurFacade extends AbstractFacade<Utilisateur> implements Ut
                         cb.equal(root.get("mdp").as(String.class), mdp)) // chiffrement mot de passe à faire si on a du temps                )
         );
         return getEntityManager().createQuery(cq).getSingleResult();
+    }
+    
+    @Override
+    public Utilisateur creerUtilisateur(String nom, String prenom, String nomUtilisateur, String motDePasse) {
+        Utilisateur u = new Utilisateur();
+        u = new Usager();
+        u.setNom(nom);
+        u.setPrenom(prenom);
+        u.setNomUtilisateur(nomUtilisateur);
+        u.setMotDePasse(motDePasse);
+        this.create(u);
+        return u;
+    }
+    
+    @Override
+    public Utilisateur creerMecanicien(String nom, String prenom, String nomUtilisateur, String motDePasse, Station station) {
+        Utilisateur u = new Mecanicien();
+        u = new Mecanicien();
+        u.setNom(nom);
+        u.setPrenom(prenom);
+        u.setNomUtilisateur(nomUtilisateur);
+        u.setMotDePasse(motDePasse);
+        this.create(u);
+        return u;
     }
     
 }

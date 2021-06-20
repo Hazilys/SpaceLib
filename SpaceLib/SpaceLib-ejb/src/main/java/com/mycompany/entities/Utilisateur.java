@@ -37,10 +37,14 @@ public class Utilisateur implements Serializable {
     private List<Operation> listeOperations;
 
     public Utilisateur() {
-    }
+    }    
 
     public Long getIdUtilisateur() {
         return idUtilisateur;
+    }
+    
+    public void setIdUtilisateur(Long idUtilisateur) {
+        this.idUtilisateur = idUtilisateur;
     }
 
     public String getNom() {

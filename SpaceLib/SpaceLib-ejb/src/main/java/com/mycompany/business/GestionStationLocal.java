@@ -18,5 +18,7 @@ import javax.ejb.Local;
 public interface GestionStationLocal {
     public  List <Quai> listQuaiDisponible(Station station);
      public Quai quaiDisponible(Station stationArrive);
+     public List<Station> listeStation();
+     public Station getStationByNom(Long idStation);
     
 }

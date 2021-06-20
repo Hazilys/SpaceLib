@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
@@ -39,8 +40,8 @@ public class Navette implements Serializable {
     private Quai quai;
     @OneToMany(mappedBy = "navette")
     private List<Operation> listeOperations;
-    @ManyToMany(mappedBy = "listeNavettesAReviser")
-    private List<Revision> revisions;
+    @ManyToOne
+    private Station station;
     
     // ajouter attributs list<voyage> ??
 
@@ -95,12 +96,12 @@ public class Navette implements Serializable {
         this.listeOperations = listeOperations;
     }
 
-    public List<Revision> getRevisions() {
-        return revisions;
+    public Station getStation() {
+        return station;
     }
 
-    public void setRevisions(List<Revision> revisions) {
-        this.revisions = revisions;
+    public void setStation(Station station) {
+        this.station = station;
     }
     
     @Override

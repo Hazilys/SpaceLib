@@ -24,8 +24,6 @@ public class Revision extends Operation implements Serializable {
   
     @NotNull
     private ETATREVISION etatRevision;
-    @ManyToMany
-    private List<Navette> listeNavettesAReviser;
     @ManyToOne
     private Mecanicien mecanicien;
     @ManyToOne
@@ -35,10 +33,6 @@ public class Revision extends Operation implements Serializable {
 
     public ETATREVISION getEtatRevision() {
         return etatRevision;
-    }
-    
-    public List<Navette> getListeNavettesAReviser() {
-        return listeNavettesAReviser;
     }
 
     public void setEtatRevision(ETATREVISION etatRevision) {

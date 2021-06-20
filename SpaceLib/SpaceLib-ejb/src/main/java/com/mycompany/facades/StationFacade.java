@@ -8,6 +8,7 @@ package com.mycompany.facades;
 import com.mycompany.entities.Navette;
 import com.mycompany.entities.Quai;
 import com.mycompany.entities.Station;
+import java.util.List;
 import java.util.Objects;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

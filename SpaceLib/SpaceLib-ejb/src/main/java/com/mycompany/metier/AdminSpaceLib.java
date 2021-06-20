@@ -16,4 +16,7 @@ public class AdminSpaceLib implements AdminSpaceLibLocal {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+    
+    // méthodes pour gérer les informations de la station
+    // Méthodes pour saisir le nombre de navettes disponibles
 }

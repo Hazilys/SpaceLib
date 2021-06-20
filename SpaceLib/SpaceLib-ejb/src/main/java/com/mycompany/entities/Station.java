@@ -44,6 +44,9 @@ public class Station implements Serializable {
 
     @OneToMany(mappedBy = "station")
     private List<Revision> revisions;
+    
+    @OneToMany(mappedBy = "station")
+    private List<Navette> listeNavettesAReviser;
 
     public Station() {
     }
@@ -119,6 +122,14 @@ public class Station implements Serializable {
 
     public void setRevisions(List<Revision> revisions) {
         this.revisions = revisions;
+    }
+
+    public List<Navette> getListeNavettesAReviser() {
+        return listeNavettesAReviser;
+    }
+
+    public void setListeNavettesAReviser(List<Navette> listeNavettesAReviser) {
+        this.listeNavettesAReviser = listeNavettesAReviser;
     }
     
     @Override

@@ -63,7 +63,6 @@ public class RevisionFacade extends AbstractFacade<Revision> implements Revision
         rev.setNavette(navette);
         rev.setQuai(quai);
         rev.setStation(station);
-        rev.getListeNavettesAReviser().remove(navette);
         rev.setEtatRevision(ETATREVISION.DEBUT);
         rev.setMecanicien(mecanicien);
         
@@ -86,10 +85,5 @@ public class RevisionFacade extends AbstractFacade<Revision> implements Revision
         this.create(rev);
         
         System.out.println("Fin de la révision de la navette !");
-    }
-    
-    @Override
-    public List<Navette> getListeNavettesAReviser(){
-        return null;
     }
 }

@@ -27,8 +27,6 @@ public interface RevisionFacadeLocal {
     void debuterRevisionNavette(Navette navette, Quai quai, Station station, Mecanicien mecanicien);
     
     void cloturerRevisionNavette(Navette navette, Quai quai, Station station, Mecanicien mecanicien);
-    
-    List<Navette> getListeNavettesAReviser();
 
     void create(Revision revision);
 

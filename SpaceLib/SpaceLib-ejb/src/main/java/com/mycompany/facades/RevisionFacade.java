@@ -58,7 +58,11 @@ public class RevisionFacade extends AbstractFacade<Revision> implements Revision
     
     @Override
     public void debuterRevisionNavette(Navette navette, Quai quai, Station station, Mecanicien mecanicien) {
+        
+        
+         
         Revision rev = new Revision();
+        
         rev.setDateCreationOperation(new GregorianCalendar());
         rev.setNavette(navette);
         rev.setQuai(quai);

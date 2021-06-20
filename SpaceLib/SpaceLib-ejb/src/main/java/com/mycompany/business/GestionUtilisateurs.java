@@ -73,7 +73,7 @@ public class GestionUtilisateurs implements GestionUtilisateursLocal {
         u.setMotDePasse(motDePasse);        
         return u;
     }
-
+    
     @Override
     public void supprimerUtilisateur(int idUtilisateur) {
         Utilisateur u = this.utilisateurFacade.find(idUtilisateur);

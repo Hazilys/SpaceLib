@@ -6,9 +6,7 @@
 package com.mycompany.facades;
 
 import com.mycompany.entities.Utilisateur;
-import com.mycompany.entities.Quai;
 import com.mycompany.entities.Station;
-import com.mycompany.entities.Navette;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -19,7 +17,7 @@ import javax.ejb.Local;
 @Local
 public interface UtilisateurFacadeLocal {
     
-    Utilisateur creerCompte(String nomUtilisateur, String mdp);
+    public Utilisateur creerUtilisateur(String nom, String prenom, String nomUtilisateur, String motDePasse);
     
     Utilisateur seConnecter(String nomUtilisateur, String mdp);
     
@@ -38,6 +36,8 @@ public interface UtilisateurFacadeLocal {
     List<Utilisateur> findAll();
 
     List<Utilisateur> findRange(int[] range);
+    
+    public Utilisateur creerMecanicien(String nom, String prenom, String nomUtilisateur, String motDePasse, Station station);
 
     int count();
     

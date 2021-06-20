@@ -38,7 +38,7 @@ public class VoyageFacade extends AbstractFacade<Voyage> implements VoyageFacade
     }
     
     @Override
-    public void resever(Usager emprunteur, int NbPassagers, Station stationDepart, Station stationArrivee, Calendar dateDepart, Calendar dateArrivee, Quai quai, Navette nav) {
+    public void reserver(Usager emprunteur, int NbPassagers, Station stationDepart, Station stationArrivee, Calendar dateDepart, Calendar dateArrivee, Quai quai, Navette nav) {
               
         // Création de l'opération voyage initié (voyageI pour voyage initié)
         Voyage voyageI = new Voyage();

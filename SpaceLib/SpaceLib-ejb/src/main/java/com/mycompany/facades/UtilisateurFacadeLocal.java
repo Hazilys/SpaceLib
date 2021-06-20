@@ -17,8 +17,6 @@ import javax.ejb.Local;
 @Local
 public interface UtilisateurFacadeLocal {
     
-    public Utilisateur creerUtilisateur(String nom, String prenom, String nomUtilisateur, String motDePasse);
-    
     Utilisateur seConnecter(String nomUtilisateur, String mdp);
     
     Utilisateur creerUtilisateur(String nom, String prenom, String nomUtilisateur, String motDePasse);
@@ -36,8 +34,6 @@ public interface UtilisateurFacadeLocal {
     List<Utilisateur> findAll();
 
     List<Utilisateur> findRange(int[] range);
-    
-    public Utilisateur creerMecanicien(String nom, String prenom, String nomUtilisateur, String motDePasse, Station station);
 
     int count();
     

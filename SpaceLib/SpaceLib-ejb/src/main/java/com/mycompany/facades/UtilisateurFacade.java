@@ -75,29 +75,6 @@ public class UtilisateurFacade extends AbstractFacade<Utilisateur> implements Ut
         );
         return getEntityManager().createQuery(cq).getSingleResult();
     }
-    
-    @Override
-    public Utilisateur creerUtilisateur(String nom, String prenom, String nomUtilisateur, String motDePasse) {
-        Utilisateur u = new Utilisateur();
-        u = new Usager();
-        u.setNom(nom);
-        u.setPrenom(prenom);
-        u.setNomUtilisateur(nomUtilisateur);
-        u.setMotDePasse(motDePasse);
-        this.create(u);
-        return u;
-    }
-    
-    @Override
-    public Utilisateur creerMecanicien(String nom, String prenom, String nomUtilisateur, String motDePasse, Station station) {
-        Utilisateur u = new Mecanicien();
-        u = new Mecanicien();
-        u.setNom(nom);
-        u.setPrenom(prenom);
-        u.setNomUtilisateur(nomUtilisateur);
-        u.setMotDePasse(motDePasse);
-        this.create(u);
-        return u;
-    }
+
     
 }

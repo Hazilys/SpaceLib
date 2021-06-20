@@ -5,9 +5,11 @@
  */
 package com.mycompany.facades;
 
+import com.mycompany.entities.NBPLACES;
 import com.mycompany.entities.Navette;
 import com.mycompany.entities.Quai;
 import com.mycompany.entities.Station;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.ejb.Stateless;
@@ -58,6 +60,32 @@ public class StationFacade extends AbstractFacade<Station> implements StationFac
             }
         }
         return false;
+    }
+
+    @Override
+    public Station creerStation(String localisation, int nbQuai, List<NBPLACES> nbPlace) {
+        Station station = new Station();
+        station.setNomStation(localisation);
+       
+        List<Quai> listeQuais = new ArrayList<Quai>();
+        for (int i=0; i<nbQuai ; i++) {
+            
+            for (NBPLACES n : nbPlace) {
+            
+            Quai quai = new Quai();
+            listeQuais.add(quai);
+            Navette navette = new Navette();
+            navette.setNbPlaces(n);
+            navette.setQuai(quai);
+            }
+        } 
+        
+        station.setListeQuais(listeQuais);
+        this.create(station);
+        return station;
+        
+        
+        
     }
     
 }

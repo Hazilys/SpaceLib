@@ -18,7 +18,9 @@ import javax.ejb.Local;
 @Local
 public interface GestionUtilisateursLocal {
     
-    public Utilisateur creerUtilisateur(int typeUtilisateur,String nom,String prenom,String nomUtilisateur, String motDePasse);
+    public Utilisateur creerUtilisateur(String nom,String prenom,String nomUtilisateur, String motDePasse);
+    
+    public Utilisateur creerMecanicien(String nom,String prenom,String nomUtilisateur, String motDePasse, Station station);
     
     public Usager inscriptionUsager(String nom,String prenom,String nomUtilisateur, String motDePasse, Station localisation);
     

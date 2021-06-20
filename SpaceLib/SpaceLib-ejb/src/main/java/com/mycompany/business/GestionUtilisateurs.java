@@ -59,19 +59,13 @@ public class GestionUtilisateurs implements GestionUtilisateursLocal {
      
 
     @Override
-    public Utilisateur creerUtilisateur(int typeUtilisateur, String nom, String prenom, String nomUtilisateur, String motDePasse) {
-        Utilisateur u = null;
-        switch (typeUtilisateur) {
-            case 1:
-                u = new Usager();
-            case 2:
-                u = new Mecanicien();
-        }
-        u.setNom(nom);
-        u.setPrenom(prenom);
-        u.setNomUtilisateur(nomUtilisateur);
-        u.setMotDePasse(motDePasse);        
-        return u;
+    public Utilisateur creerUtilisateur(String nom, String prenom, String nomUtilisateur, String motDePasse) {
+        return this.utilisateurFacade.creerUtilisateur(nom, prenom, nomUtilisateur, motDePasse);
+    }
+    
+    @Override
+    public Utilisateur creerMecanicien(String nom, String prenom, String nomUtilisateur, String motDePasse, Station station) {
+        return this.utilisateurFacade.creerMecanicien(nom, prenom, nomUtilisateur, motDePasse, station);
     }
     
     @Override

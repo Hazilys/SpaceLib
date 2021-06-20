@@ -5,6 +5,7 @@
  */
 package com.mycompany.facades;
 
+import com.mycompany.entities.NBPLACES;
 import com.mycompany.entities.Navette;
 import com.mycompany.entities.Quai;
 import com.mycompany.entities.Station;
@@ -23,6 +24,8 @@ public interface StationFacadeLocal {
     boolean quaiDisponible(Station station);
 
     void create(Station station);
+    
+    Station creerStation(String localisation, int nbQuai, List<NBPLACES> nbPlace);
 
     void edit(Station station);
 

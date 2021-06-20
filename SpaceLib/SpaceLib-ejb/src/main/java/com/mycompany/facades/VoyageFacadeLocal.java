@@ -21,7 +21,7 @@ import javax.ejb.Local;
 @Local
 public interface VoyageFacadeLocal {
     
-    void resever(Usager emprunteur, int NbPassagers, Station stationDepart, Station stationArrivee, Calendar dateDepart, Calendar dateArrivee, Quai quai, Navette nav);
+    void reserver(Usager emprunteur, int NbPassagers, Station stationDepart, Station stationArrivee, Calendar dateDepart, Calendar dateArrivee, Quai quai, Navette nav);
 
     void create(Voyage voyage);
 

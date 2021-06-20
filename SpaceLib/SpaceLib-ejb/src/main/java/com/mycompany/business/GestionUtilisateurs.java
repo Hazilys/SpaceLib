@@ -61,7 +61,7 @@ public class GestionUtilisateurs implements GestionUtilisateursLocal {
         }
         return u;
     }
-
+    
     @Override
     public void supprimerUtilisateur(int idUtilisateur) {
         Utilisateur u = this.utilisateurFacade.find(idUtilisateur);

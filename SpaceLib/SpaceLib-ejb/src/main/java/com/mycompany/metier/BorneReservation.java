@@ -48,9 +48,14 @@ public class BorneReservation implements BorneReservationLocal {
     @EJB
     private VoyageFacadeLocal voyageFacade;
     
-    public Utilisateur creerCompte(String nomUtilisateur, String mdp){
-        return this.utilisateurFacade.creerCompte(nomUtilisateur, mdp);
+    public Utilisateur creerUtilisateur(String nom, String prenom, String nomUtilisateur, String motDePasse){
+        return this.utilisateurFacade.creerUtilisateur(nom, prenom, nomUtilisateur, motDePasse);
     }
+    
+    public Utilisateur creerMecanicien(String nom, String prenom, String nomUtilisateur, String motDePasse, Station station){
+        return this.utilisateurFacade.creerMecanicien(nom, prenom, nomUtilisateur, motDePasse, station);
+    }
+    
     
     public Utilisateur seConnecter(String nomUtilisateur, String mdp){
         return this.utilisateurFacade.seConnecter(nomUtilisateur, mdp);
@@ -69,7 +74,7 @@ public class BorneReservation implements BorneReservationLocal {
         if (!Objects.isNull(nav2) && this.stationFacade.quaiDisponible(stationA)){
             // modification de la disponibilité de la navette + voyage + nb de voyages de la navette+1 + modification de l'emplacement de l'emprunteur
             nav2.setDisponible(Boolean.FALSE);
-            this.voyageFacade.resever(emprunteur, NbPassagers, stationD, stationA, dateDepart, dateArrivee, quai, nav2);
+            this.voyageFacade.reserver(emprunteur, NbPassagers, stationD, stationA, dateDepart, dateArrivee, quai, nav2);
             nav2.setNbVoyagesTotal(nav2.getNbVoyagesTotal()+1);
             usager.setLocalisation(stationA);
             nav2.setDisponible(Boolean.TRUE);

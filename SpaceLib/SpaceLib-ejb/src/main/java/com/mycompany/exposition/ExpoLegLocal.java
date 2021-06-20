@@ -6,6 +6,8 @@
 package com.mycompany.exposition;
 
 import com.mycompany.entities.Mecanicien;
+import com.mycompany.entities.Station;
+import com.mycompany.entities.Utilisateur;
 import javax.ejb.Local;
 
 /**
@@ -18,4 +20,8 @@ public interface ExpoLegLocal {
     void seConnecter(String nomUtilisateur, String mdp);
     
     void reviserNavette(Mecanicien mecanicien);
+    
+    Utilisateur creerUtilisateur(String nom, String prenom, String nomUtilisateur, String motDePasse);
+    
+    Utilisateur creerMecanicien(String nom, String prenom, String nomUtilisateur, String motDePasse, Station station);
 }

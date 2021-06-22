@@ -5,21 +5,17 @@
  */
 package com.mycompany.facades;
 
-
 import com.mycompany.entities.Navette;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-
 /**
  *
- * @author Camille
+ * @author AminaDridi
  */
 @Stateless
 public class NavetteFacade extends AbstractFacade<Navette> implements NavetteFacadeLocal {
-
-    
 
     @PersistenceContext(unitName = "SpaceLibPersistenceUnit")
     private EntityManager em;
@@ -32,18 +28,34 @@ public class NavetteFacade extends AbstractFacade<Navette> implements NavetteFac
     public NavetteFacade() {
         super(Navette.class);
     }
-/*
-    @Override
-    public void incrementerNbVoyageTotal(long idNavette) {
-         Navette navette = this.find(idNavette);
-         int nbVoyageTotalInt = navette.getNbVoyagesTotal();
-         if (nbVoyageTotalInt > 3 ){ 
-             navette.setNbVoyagesTotal(0);
-         }
-        navette.setNbVoyagesTotal(nbVoyageTotalInt+1);
-        this.edit(navette);  
+    
+    public Navette creerNavette(int nbPlace) {
+       if (nbPlace == 2 || nbPlace == 5 || nbPlace == 10 || nbPlace == 15) {
+
+            Navette navette = new Navette();
+            navette.setNbPlaces(nbPlace);
+            navette.setDisponible(Boolean.TRUE);
+            navette.setNbVoyagesTotal(0);
+            
+            //persist 
+            this.create(navette);
+             //this.em.flush();
+            return (navette);
+
+
+        
+        }
+        return null;
     }
 
-  */
+    @Override
+    public void incrementerNbVoyageTotal(long idNavette) {
+      Navette navette = this.find(idNavette);
+      navette.setNbVoyagesTotal(navette.getNbVoyagesTotal()+1);
+      this.edit(navette);  
+    }
+
+  
+    
     
 }

@@ -29,8 +29,7 @@ public class Operation implements Serializable {
     @NotNull
     @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar dateCreationOperation;
-    @ManyToOne
-    private Utilisateur utilisateur;
+   
     @ManyToOne
     private Quai quai;
     @ManyToOne
@@ -55,13 +54,7 @@ public class Operation implements Serializable {
         this.dateCreationOperation = dateCreationOperation;
     }
 
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
-    }
-
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
-    }
+  
 
     public Quai getQuai() {
         return quai;

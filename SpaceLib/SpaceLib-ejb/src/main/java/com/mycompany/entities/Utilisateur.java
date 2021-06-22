@@ -33,8 +33,7 @@ public class Utilisateur implements Serializable {
     private String nomUtilisateur;
     @NotNull
     private String motDePasse;
-    @OneToMany(mappedBy = "utilisateur")
-    private List<Operation> listeOperations;
+
 
     public Utilisateur() {
     }    
@@ -79,13 +78,7 @@ public class Utilisateur implements Serializable {
         this.motDePasse = motDePasse;
     }
 
-    public List<Operation> getListeOperations() {
-        return listeOperations;
-    }
 
-    public void setListeOperations(List<Operation> listeOperations) {
-        this.listeOperations = listeOperations;
-    }
 
     @Override
     public int hashCode() {

@@ -6,6 +6,7 @@
 package com.mycompany.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,34 +16,39 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Camille
  */
 @Entity
+@XmlAccessorType( XmlAccessType.FIELD)
 public class Quai implements Serializable {
-
-   @OneToMany(mappedBy = "quai")
-   private List<Revision> revisions;
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idQuai;
-    @NotNull
     private Boolean occupe;
     @ManyToOne
     private Station station;
     @OneToOne(mappedBy = "quai")
+     @XmlTransient
     private Navette navette;
     @OneToMany(mappedBy = "quai")
-    private List<Operation> listeOperations;
+    @XmlTransient
+    private Collection<Operation> listeOperations;
+       @OneToMany(mappedBy = "quai")
+       @XmlTransient
+   private Collection<Revision> revisions;
 
     public Quai() {
     }
 
-    public List<Revision> getRevisions() {
+    public Collection<Revision> getRevisions() {
            return revisions;
     }
 
@@ -82,7 +88,7 @@ public class Quai implements Serializable {
         this.navette = navette;
     }
 
-    public List<Operation> getListeOperations() {
+    public Collection<Operation> getListeOperations() {
         return listeOperations;
     }
 

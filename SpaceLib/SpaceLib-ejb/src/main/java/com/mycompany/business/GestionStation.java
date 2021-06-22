@@ -36,7 +36,8 @@ public class GestionStation implements GestionStationLocal {
         return listQuai;    }
 
     @Override
-    public Quai quaiDisponible(Station station) {
+    public Quai quaiDisponible(Long idStation) {
+        Station station = stationFacade.find(idStation);
          for (Quai quaiElement : station.getListeQuais()){
            if (!quaiElement.getOccupe()) {
               return quaiElement;

@@ -5,6 +5,7 @@
  */
 package com.mycompany.facades;
 
+import com.mycompany.entities.Admin;
 import com.mycompany.entities.Mecanicien;
 import com.mycompany.entities.Station;
 import com.mycompany.entities.Usager;
@@ -12,6 +13,7 @@ import com.mycompany.entities.Utilisateur;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -40,13 +42,12 @@ public class UtilisateurFacade extends AbstractFacade<Utilisateur> implements Ut
     }
     
     @Override
-    public Utilisateur creerUtilisateur(String nom, String prenom, String nomUtilisateur, String motDePasse) {
-        Utilisateur u = new Utilisateur();
-                u = new Usager();
-                u.setNom(nom);
-                u.setPrenom(prenom);
-                u.setNomUtilisateur(nomUtilisateur);
-                u.setMotDePasse(motDePasse);
+    public Utilisateur creerUsager(String nom, String prenom, String nomUtilisateur, String motDePasse) {
+        Utilisateur u = new Usager();
+        u.setNom(nom);
+        u.setPrenom(prenom);
+        u.setNomUtilisateur(nomUtilisateur);
+        u.setMotDePasse(motDePasse);
         this.create(u);
         return u;
     }
@@ -64,16 +65,27 @@ public class UtilisateurFacade extends AbstractFacade<Utilisateur> implements Ut
     }
 
     @Override
-    public Utilisateur seConnecter(String nomUtilisateur, String mdp) {
-        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery<Utilisateur> cq = cb.createQuery(Utilisateur.class);
-        Root<Utilisateur> root = cq.from(Utilisateur.class);
-        cq.where(
-                cb.and(
-                        cb.equal(root.get("nomUtilisateur").as(String.class),nomUtilisateur),
-                        cb.equal(root.get("mdp").as(String.class), mdp)) // chiffrement mot de passe à faire si on a du temps                )
-        );
-        return getEntityManager().createQuery(cq).getSingleResult();
+    public Utilisateur seConnecter(String nomUtilisateur, String motDePasse) {
+    Utilisateur utilisateur = null;
+		Query query = em.createQuery("select u from Utilisateur u where u.nomUtilisateur=:nomUtilisateur and u.motDePasse=:motDePasse");
+		query.setParameter("nomUtilisateur", nomUtilisateur).setParameter("motDePasse", motDePasse);
+		try {
+			utilisateur = (Utilisateur) query.getSingleResult();
+		} catch (Exception e) {
+			System.out.println("Erreur de connection ");
+		}
+		return utilisateur;
+    }
+
+    @Override
+    public Utilisateur creerAdmin(String nom, String prenom, String nomUtilisateur, String motDePasse) {
+        Utilisateur u = new Admin();
+        u.setNom(nom);
+        u.setPrenom(prenom);
+        u.setNomUtilisateur(nomUtilisateur);
+        u.setMotDePasse(motDePasse);
+        this.create(u);
+        return u;
     }
 
     

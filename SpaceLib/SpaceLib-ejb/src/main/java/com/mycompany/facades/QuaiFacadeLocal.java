@@ -6,6 +6,7 @@
 package com.mycompany.facades;
 
 import com.mycompany.entities.Quai;
+import com.mycompany.entities.Station;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -17,6 +18,8 @@ import javax.ejb.Local;
 public interface QuaiFacadeLocal {
 
     void create(Quai quai);
+    
+    public Quai creerQuai(Station station);
 
     void edit(Quai quai);
 

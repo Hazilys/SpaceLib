@@ -5,27 +5,19 @@
  */
 package com.mycompany.facades;
 
-import com.mycompany.entities.NBPLACES;
 import com.mycompany.entities.Navette;
-import com.mycompany.entities.Quai;
 import com.mycompany.entities.Station;
 import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author Camille
+ * @author AminaDridi
  */
 @Local
 public interface StationFacadeLocal {
-    
-    Navette navetteDisponible(Station station, int nbPassagers);
-    
-    boolean quaiDisponible(Station station);
 
     void create(Station station);
-    
-    Station creerStation(String localisation, int nbQuai, List<NBPLACES> nbPlace);
 
     void edit(Station station);
 
@@ -38,5 +30,17 @@ public interface StationFacadeLocal {
     List<Station> findRange(int[] range);
 
     int count();
+    
+     Navette navetteDisponible(Station station, int nbPassagers);
+    
+    boolean quaiDisponible(Station station);
+    
+    public List<Navette> getNavette(Long idStation);
+
+    
+    Station creerStation(String nom, String localisation, int nbQuai, List<Integer> nbPlace);
+    
+    public List<Navette> getNavetteReparation(Long idStation);
+
     
 }

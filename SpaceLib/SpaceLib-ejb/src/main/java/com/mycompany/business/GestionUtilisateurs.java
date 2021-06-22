@@ -16,6 +16,7 @@ import com.mycompany.entities.Voyage;
 import com.mycompany.facades.MecanicienFacadeLocal;
 import com.mycompany.facades.NavetteFacade;
 import com.mycompany.facades.NavetteFacadeLocal;
+import com.mycompany.facades.StationFacadeLocal;
 import com.mycompany.facades.UsagerFacadeLocal;
 import com.mycompany.facades.UtilisateurFacadeLocal;
 import com.mycompany.facades.VoyageFacade;
@@ -54,13 +55,16 @@ public class GestionUtilisateurs implements GestionUtilisateursLocal {
     @EJB
     private UsagerFacadeLocal usagerFacade;
     
+    @EJB
+    private StationFacadeLocal Station ; 
+    
     
     
      
 
     @Override
-    public Utilisateur creerUtilisateur(String nom, String prenom, String nomUtilisateur, String motDePasse) {
-        return this.utilisateurFacade.creerUtilisateur(nom, prenom, nomUtilisateur, motDePasse);
+    public Utilisateur creerUsager(String nom, String prenom, String nomUtilisateur, String motDePasse) {
+        return this.utilisateurFacade.creerUsager(nom, prenom, nomUtilisateur, motDePasse);
     }
     
     @Override
@@ -87,15 +91,19 @@ public class GestionUtilisateurs implements GestionUtilisateursLocal {
     }
 
     @Override
-    public void reserver(Usager usager, int NbPassagers, Station stationArrivee, Station stationDepart, Calendar dateDepart, Calendar dateArrivee) {
-
-        Quai quai = new Quai();
-        quai = gestionStation.quaiDisponible(stationArrivee);
+    public void reserver(Long idUsager, int NbPassagers, Long idStationArrivee, Long idStationDepart, Calendar dateDepart, Calendar dateArrivee) {
+        Usager usager = usagerFacade.find(idUsager);
+        Station stationDepart = Station.find(idStationDepart);
+        Station stationArrivee = Station.find(idStationArrivee);
+        Quai quai = gestionStation.quaiDisponible(idStationArrivee); 
+        
+        System.out.println(Objects.isNull(quai)+"  test "+Objects.isNull(gestionNavette.navetteDisponible(idStationDepart, NbPassagers)));
         // si y a une navette de disponible  et si y a un quai de disponible sur la station d'arrivée 
-        if (Objects.isNull(quai) || Objects.isNull(gestionNavette.navetteDisponible(stationDepart, NbPassagers))) {
+        if (Objects.isNull(quai) || Objects.isNull(gestionNavette.navetteDisponible(idStationDepart, NbPassagers))) {
             System.out.println("Il n'est pas possible de faire une réservation");
         } else {
-            Navette navette = gestionNavette.navetteDisponible(stationDepart, NbPassagers);
+          
+            Navette navette = gestionNavette.navetteDisponible(idStationDepart, NbPassagers);
             navette.setDisponible(Boolean.FALSE);
             // Création de l'opération voyage initié (voyageI pour voyage initié)
             Voyage voyageI = new Voyage();

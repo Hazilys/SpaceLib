@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.business;
+package com.mycompany.exposition;
 
 import com.mycompany.entities.NBPLACES;
 import com.mycompany.entities.Station;
@@ -16,7 +16,7 @@ import javax.ejb.Local;
  * @author AminaDridi
  */
 @Local
-public interface GestionAdminLocal {
+public interface ExpoAdminLocal {
     
     public Utilisateur creerAdmin(String nom,String prenom,String nomUtilisateur, String motDePasse);
     

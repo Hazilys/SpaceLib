@@ -6,6 +6,7 @@
 package com.mycompany.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import javax.persistence.Entity;
@@ -14,12 +15,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Camille
  */
 @Entity
+@XmlAccessorType( XmlAccessType.FIELD)
 public class Station implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -30,23 +35,28 @@ public class Station implements Serializable {
     private String nomStation;
     @NotNull
     private String localisation;
-    @NotNull
+    @XmlTransient
     private HashMap<Station,Integer> distance;
     @OneToMany(mappedBy = "station")
-    private List<Quai> listeQuais;
+    @XmlTransient
+    private Collection<Quai> listeQuais;
     @OneToMany(mappedBy = "stationRattachement")
-    private List<Mecanicien> listeMecaniciens;
+    @XmlTransient
+    private Collection<Mecanicien> listeMecaniciens;
     @OneToMany(mappedBy = "localisation")
-    private List<Usager> listeUsagers;
+    @XmlTransient
+    private Collection<Usager> listeUsagers;
     
     @OneToMany(mappedBy = "stationDepart")
-    private List<Voyage> voyages;
+    @XmlTransient
+    private Collection<Voyage> voyages;
 
+  @OneToMany(mappedBy = "station")
+  @XmlTransient
+    private Collection<Revision> revisions;
+    /*
     @OneToMany(mappedBy = "station")
-    private List<Revision> revisions;
-    
-    @OneToMany(mappedBy = "station")
-    private List<Navette> listeNavettesAReviser;
+    private List<Navette> listeNavettesAReviser;*/
 
     public Station() {
     }
@@ -83,7 +93,7 @@ public class Station implements Serializable {
         this.distance = distance;
     }
 
-    public List<Quai> getListeQuais() {
+    public Collection<Quai> getListeQuais() {
         return listeQuais;
     }
 
@@ -91,7 +101,7 @@ public class Station implements Serializable {
         this.listeQuais = listeQuais;
     }
 
-    public List<Mecanicien> getListeMecaniciens() {
+    public Collection<Mecanicien> getListeMecaniciens() {
         return listeMecaniciens;
     }
 
@@ -99,7 +109,7 @@ public class Station implements Serializable {
         this.listeMecaniciens = listeMecaniciens;
     }
 
-    public List<Usager> getListeUsagers() {
+    public Collection<Usager> getListeUsagers() {
         return listeUsagers;
     }
 
@@ -107,7 +117,7 @@ public class Station implements Serializable {
         this.listeUsagers = listeUsagers;
     }
     
-    public List<Voyage> getVoyages() {
+    public Collection<Voyage> getVoyages() {
         return voyages;
     }
 
@@ -116,14 +126,14 @@ public class Station implements Serializable {
     }
 
     
-    public List<Revision> getRevisions() {
+    public Collection<Revision> getRevisions() {
         return revisions;
     }
 
     public void setRevisions(List<Revision> revisions) {
         this.revisions = revisions;
     }
-
+/*
     public List<Navette> getListeNavettesAReviser() {
         return listeNavettesAReviser;
     }
@@ -131,7 +141,7 @@ public class Station implements Serializable {
     public void setListeNavettesAReviser(List<Navette> listeNavettesAReviser) {
         this.listeNavettesAReviser = listeNavettesAReviser;
     }
-    
+    */
     @Override
     public int hashCode() {
         int hash = 0;

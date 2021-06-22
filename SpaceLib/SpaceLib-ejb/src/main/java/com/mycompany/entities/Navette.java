@@ -6,16 +6,17 @@
 package com.mycompany.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -23,25 +24,26 @@ import javax.validation.constraints.NotNull;
  */
 
 
+
 @Entity
+@XmlAccessorType( XmlAccessType.FIELD)
 public class Navette implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idNavette;
-    @NotNull
-    private NBPLACES nbPlaces;
-    @NotNull
+    private int nbPlaces;
     private Integer nbVoyagesTotal;
-    @NotNull
     private Boolean disponible;
     @OneToOne
     private Quai quai;
     @OneToMany(mappedBy = "navette")
-    private List<Operation> listeOperations;
-    @ManyToOne
-    private Station station;
+    @XmlTransient
+    private Collection<Operation> listeOperations;
+    /*
+   @ManyToOne
+    private Station station;*/
     
     // ajouter attributs list<voyage> ??
 
@@ -56,11 +58,11 @@ public class Navette implements Serializable {
         this.idNavette = idNavette;
     }
 
-    public NBPLACES getNbPlaces() {
+    public int getNbPlaces() {
         return nbPlaces;
     }
 
-    public void setNbPlaces(NBPLACES nbPlaces) {
+    public void setNbPlaces(int nbPlaces) {
         this.nbPlaces = nbPlaces;
     }
 
@@ -88,14 +90,14 @@ public class Navette implements Serializable {
         this.quai = quai;
     }
 
-    public List<Operation> getListeOperations() {
+    public Collection<Operation> getListeOperations() {
         return listeOperations;
     }
 
     public void setListeOperations(List<Operation> listeOperations) {
         this.listeOperations = listeOperations;
     }
-
+/*
     public Station getStation() {
         return station;
     }
@@ -103,6 +105,7 @@ public class Navette implements Serializable {
     public void setStation(Station station) {
         this.station = station;
     }
+*/
     
     @Override
     public int hashCode() {

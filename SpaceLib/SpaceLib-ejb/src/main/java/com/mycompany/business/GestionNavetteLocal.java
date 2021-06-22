@@ -17,8 +17,14 @@ import javax.ejb.Local;
 @Local
 public interface GestionNavetteLocal {
     
-    public Navette navetteDisponible(Station stationDepart, int nbPassagers);
+   public Navette navetteDisponible(Long  idStationDepart, int nbPassagers); 
     
     public List<Navette> findListeNavettesDispo();
+    
+    public List<Navette> findListeNavetteReviser();
+    
+    public Navette findNavette(long id);
+    
+ 
     
 }

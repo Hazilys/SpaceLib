@@ -10,6 +10,8 @@ import com.mycompany.entities.Mecanicien;
 import com.mycompany.entities.Station;
 import com.mycompany.entities.Utilisateur;
 import com.mycompany.business.MetierMecanicienLocal;
+import com.mycompany.entities.Navette;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -23,6 +25,7 @@ public class ExpoLeg implements ExpoLegLocal {
     @EJB
     private MetierMecanicienLocal metierMecanicien;
     
+    
     @EJB
     private GestionUtilisateursLocal gestionUtilisateurs;
 
@@ -31,19 +34,25 @@ public class ExpoLeg implements ExpoLegLocal {
         this.metierMecanicien.seConnecter(nomUtilisateur, mdp);
     }
 
-    @Override
-    public void reviserNavette(Mecanicien mecanicien) {
-        this.metierMecanicien.reviserNavette(mecanicien);
-    }
-
-    @Override
-    public Utilisateur creerUtilisateur(String nom, String prenom, String nomUtilisateur, String motDePasse) {
-        return this.metierMecanicien.creerUtilisateur(nom, prenom, nomUtilisateur, motDePasse);
-    }
 
     @Override
     public Utilisateur creerMecanicien(String nom, String prenom, String nomUtilisateur, String motDePasse, Station station) {
         return this.metierMecanicien.creerMecanicien(nom, prenom, nomUtilisateur, motDePasse, station);
+    }
+
+    @Override
+    public List<Navette> getNavette(Long idStation) {
+            return this.metierMecanicien.getNavette(idStation);   
+    }
+
+    @Override
+    public List<Navette> getNavetteReparation(Long idStation) {
+        return this.metierMecanicien.getNavetteReparation(idStation);
+    }
+
+    @Override
+    public void revisionNavetteMecanicine(Long id, Long idNavette, Long idQuai, int choix) {
+       this.metierMecanicien.revisionNavetteMecanicine(id,idNavette , idQuai,choix);
     }
     
     

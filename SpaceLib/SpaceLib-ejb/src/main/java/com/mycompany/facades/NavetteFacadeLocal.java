@@ -11,7 +11,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author Camille
+ * @author AminaDridi
  */
 @Local
 public interface NavetteFacadeLocal {
@@ -21,16 +21,17 @@ public interface NavetteFacadeLocal {
     void edit(Navette navette);
 
     void remove(Navette navette);
-    
+
     Navette find(Object id);
 
-    List<Navette> findAll();
+    public List<Navette> findAll();
 
-    List<Navette> findRange(int[] range);
+    public List<Navette> findRange(int[] range);
 
     int count();
     
-   // public void incrementerNbVoyageTotal(long idNavette);
+    public Navette creerNavette(int nbPlace);
     
+   public void incrementerNbVoyageTotal(long idNavette);
     
 }

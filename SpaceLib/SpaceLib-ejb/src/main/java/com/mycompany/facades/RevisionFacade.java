@@ -63,12 +63,15 @@ public class RevisionFacade extends AbstractFacade<Revision> implements Revision
          
         Revision rev = new Revision();
         
-        rev.setDateCreationOperation(new GregorianCalendar());
+      
+        
         rev.setNavette(navette);
         rev.setQuai(quai);
         rev.setStation(station);
         rev.setEtatRevision(ETATREVISION.DEBUT);
-        rev.setMecanicien(mecanicien);
+        //rev.setMecanicien(mecanicien);
+        rev.setDateCreationOperation(Calendar.getInstance(Locale.FRANCE));
+       
         
         this.create(rev);
         
@@ -82,10 +85,11 @@ public class RevisionFacade extends AbstractFacade<Revision> implements Revision
         rev.setNavette(navette);
         rev.setQuai(quai);
         rev.setStation(station);
+        
         //rev.getListeNavettesAReviser().remove(navette);
         rev.setEtatRevision(ETATREVISION.FIN);
         rev.setMecanicien(mecanicien);
-        
+         navette.setDisponible(Boolean.TRUE);
         this.create(rev);
         
         System.out.println("Fin de la révision de la navette !");

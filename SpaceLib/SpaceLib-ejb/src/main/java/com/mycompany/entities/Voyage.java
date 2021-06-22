@@ -20,9 +20,9 @@ import javax.validation.constraints.NotNull;
 public class Voyage extends Operation implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @ManyToOne
+   
     private Station stationDepart;
-    @ManyToOne
+    
     private Station stationArrivee;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar dateDepart;

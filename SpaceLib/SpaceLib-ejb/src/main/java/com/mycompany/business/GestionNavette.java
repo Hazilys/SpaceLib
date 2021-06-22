@@ -9,6 +9,7 @@ import com.mycompany.entities.Navette;
 import com.mycompany.entities.Quai;
 import com.mycompany.entities.Station;
 import com.mycompany.facades.NavetteFacadeLocal;
+import com.mycompany.facades.StationFacadeLocal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -23,13 +24,18 @@ public class GestionNavette implements GestionNavetteLocal {
     
     @EJB
     NavetteFacadeLocal navetteFacade;
+     @EJB
+    StationFacadeLocal stationFacade;
     
     @Override
-    public Navette navetteDisponible(Station stationDepart, int nbPassagers) {
+    public Navette navetteDisponible(Long idStationDepart, int nbPassagers) {
+        Station stationDepart = stationFacade.find(idStationDepart);
+      
         for (Quai quai : stationDepart.getListeQuais()) {
             Navette nav = quai.getNavette();
 
-            if ((nav.getDisponible()) && (nav.getNbPlaces().getValeur() >= nbPassagers)) {
+            if ((nav.getDisponible()) && (nav.getNbPlaces() <= nbPassagers)) {
+                
                 return nav;
             }
 
@@ -47,5 +53,26 @@ public class GestionNavette implements GestionNavetteLocal {
      }
         return navettes;
 
+        
+}
+
+    @Override
+    public List<Navette> findListeNavetteReviser() {
+       /*  List<Navette> navettes = new ArrayList<Navette>();
+       navettes = navetteFacade.findAll();
+       if(navettes.isEmpty()){
+       for ( Navette e : navettes){
+           if(e.getNbVoyagesTotal().intValue() % 3 == 0 ){
+               navettes.remove(e);
+       }
+              }
+            return navettes;
+       }*/
+          return null;
+}
+
+    @Override
+    public Navette findNavette(long id) {
+         return navetteFacade.find(id); 
     }
 }

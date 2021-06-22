@@ -8,6 +8,8 @@ package com.mycompany.facades;
 import java.util.List;
 import javax.persistence.EntityManager;
 
+
+
 /**
  *
  * @author Camille

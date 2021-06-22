@@ -18,7 +18,7 @@ import javax.ejb.Local;
 @Local
 public interface GestionUtilisateursLocal {
     
-    public Utilisateur creerUtilisateur(String nom,String prenom,String nomUtilisateur, String motDePasse);
+    public Utilisateur creerUsager(String nom,String prenom,String nomUtilisateur, String motDePasse);
     
     public Utilisateur creerMecanicien(String nom,String prenom,String nomUtilisateur, String motDePasse, Station station);
     
@@ -26,7 +26,7 @@ public interface GestionUtilisateursLocal {
     
     public void supprimerUtilisateur(int idUtilisateur);
     
-    public void reserver(Usager usager, int NbPassagers, Station stationArrivee,Station stationDepart,Calendar dateDepart, Calendar dateArrivee);
+    public void reserver(Long idUsager, int NbPassagers, Long  idStationArrivee,Long idStationDepart,Calendar dateDepart, Calendar dateArrivee);
     
     public void intialiserVoyage(Usager usager);
     

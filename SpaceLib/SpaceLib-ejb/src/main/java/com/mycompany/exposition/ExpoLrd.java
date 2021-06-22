@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package com.mycompany.exposition;
-
+/*
 import com.mycompany.business.GestionStationLocal;
-import com.mycompany.business.GestionUtilisateursLocal;
+ import com.mycompany.business.GestionUtilisateursLocal;
 import com.mycompany.entities.Station;
 import com.mycompany.entities.Usager;
 import com.mycompany.entities.Utilisateur;
@@ -27,9 +27,12 @@ import javax.ejb.Stateless;
  *
  * @author Camille
  */
+
+/*
 @Stateless
 public class ExpoLrd implements ExpoLrdRemote {
 
+    
     @EJB
     private GestionStationLocal gestionStation;
 
@@ -140,6 +143,8 @@ public class ExpoLrd implements ExpoLrdRemote {
         Utilisateur util = this.gestionUtilisateurs.seConnecter(nomUtilisateur, mdp);
         return new UtilisateurExport(util.getIdUtilisateur(), util.getNom(), util.getPrenom(), util.getNomUtilisateur(), util.getMotDePasse());
     }
-
-    
 }
+  */  
+
+
+

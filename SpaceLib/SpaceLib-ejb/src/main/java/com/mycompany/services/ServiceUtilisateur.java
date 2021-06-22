@@ -28,7 +28,7 @@ public class ServiceUtilisateur implements ServiceUtilisateurLocal {
     @Override
     public void updateVoyage(Usager usager, int choix,int Nbpersonne, Station stationArrivee, Station stationDepart, Calendar dateDepart, Calendar dateArrivee) {
  switch ( choix ){
-             case 1 : gestionUtilisateur.reserver(usager, Nbpersonne, stationArrivee, stationDepart, dateDepart, dateArrivee);
+            // case 1 : gestionUtilisateur.reserver(usager, Nbpersonne, stationArrivee, stationDepart, dateDepart, dateArrivee);
              case 2 : gestionUtilisateur.intialiserVoyage(usager);
              case 3 : gestionUtilisateur.finaliserVoyage(usager);
          }

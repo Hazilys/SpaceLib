@@ -12,7 +12,7 @@ package com.mycompany.entities;
 public enum NBPLACES {
     DEUX(2), CINQ(5), DIX(10), QUINZE(15);
     
-    private final int valeur;
+    private int valeur;
     
     private NBPLACES(int valeur){
         this.valeur = valeur;
@@ -21,4 +21,9 @@ public enum NBPLACES {
     public int getValeur(){
         return this.valeur;
     }
+    
+    public int setNbPlace(int nb) {
+        return this.valeur = valeur;
+    }
+    
 }

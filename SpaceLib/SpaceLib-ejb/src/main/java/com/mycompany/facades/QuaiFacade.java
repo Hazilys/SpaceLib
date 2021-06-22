@@ -6,6 +6,7 @@
 package com.mycompany.facades;
 
 import com.mycompany.entities.Quai;
+import com.mycompany.entities.Station;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,18 @@ public class QuaiFacade extends AbstractFacade<Quai> implements QuaiFacadeLocal 
 
     public QuaiFacade() {
         super(Quai.class);
+    }
+
+    @Override
+    public Quai creerQuai(Station station) {
+        Quai quai = new Quai();
+      quai.setStation(station);
+        quai.setOccupe(Boolean.TRUE);
+        
+        create(quai);
+        return quai;
+        
+        
     }
     
 }
